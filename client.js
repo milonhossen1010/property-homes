@@ -1,10 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import 'dotenv/config'
 
  
- 
 const client = new ApolloClient({
-  uri: 'http://wp.local/graphql',
+  uri: process.env.WP_GRAPHQL_URI || 'http://wp.local/graphql',
   cache: new InMemoryCache(),
 });
 
