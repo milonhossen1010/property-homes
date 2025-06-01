@@ -3,7 +3,7 @@ import Heading from '../Heading/Heading';
 
 export default function BlockRenderer({ blocks }) {
   return blocks?.map((block, index) => {
-    console.log(block);
+   
     switch (block.name) {
       case 'core/heading': {
         return <Heading key={index} level={block.attributes.level} textAlign={block.attributes.textAlign} content={block.attributes.content} />;
