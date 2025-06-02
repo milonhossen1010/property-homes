@@ -1,30 +1,48 @@
-// app/[slug]/page.js
+'use client';
+
+import { useEffect, useState } from 'react';
 import { gql } from '@apollo/client';
 import client from '@/client';
 import BlockRenderer from '@/components/BlockRenderer/BlockRenderer';
+import { useParams } from 'next/navigation';
 
-export default async function Page({ params }) {
-  const {slug} = await params
-  const uri = `/${slug ?? ''}`;
-  
-
-  const { data } = await client.query({
-    query: gql`
-      query NewQuery($uri: String!) {
-        nodeByUri(uri: $uri) {
-          ... on Page {
-            id
-            blocks(postTemplate: false)
-          }
-        }
+const QUERY = gql`
+  query NewQuery($uri: String!) {
+    nodeByUri(uri: $uri) {
+      ... on Page {
+        id
+        blocks(postTemplate: false)
       }
-    `,
-    variables: { uri },
-  });
- console.log(data?.nodeByUri?.blocks);
+    }
+  }
+`;
+
+export default function Page() {
+  const params = useParams();
+  const slug = params?.slug || '';
+  const [blocks, setBlocks] = useState(null);
+
+  useEffect(() => {
+    const uri = `/${slug}`;
+
+    client
+      .query({
+        query: QUERY,
+        variables: { uri },
+      })
+      .then(({ data }) => {
+        setBlocks(data?.nodeByUri?.blocks);
+      })
+      .catch(err => {
+        console.error('Apollo error:', err);
+      });
+  }, [slug]);
+
+ 
+
   return (
-    <div>
-      <BlockRenderer blocks={data?.nodeByUri?.blocks} />
+    <div> 
+      <BlockRenderer blocks={blocks} />
     </div>
   );
 }

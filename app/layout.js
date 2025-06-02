@@ -1,5 +1,7 @@
 import { Aboreto, Poppins } from 'next/font/google';  
 import "./globals.css";
+import Header from '@/components/Header/Header';
+import NextTopLoader from 'nextjs-toploader';
 
 
 const aboreto = Aboreto({
@@ -23,7 +25,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${aboreto.variable} ${poppins.variable} antialiased`}>
+        <Header />
         {children}
+        <NextTopLoader color="#51BB7B" />
       </body>
     </html>
   );
