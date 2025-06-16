@@ -8,7 +8,7 @@ export default function NavItem({ items }) {
         {item.menuItem.label}
       </Link>
       {!!item.menuItem?.submenuItems?.length && (
-        <div className="group-hover:block hidden bg-slate-800 text-right absolute right-0 top-full  ">
+        <div className="group-hover:block md:hidden md:bg-slate-800 md:text-right md:absolute right-0 top-full pl-5 md:pl-0 ">
           {item.menuItem.submenuItems.map((item, index) => (
             <Link
               key={index}

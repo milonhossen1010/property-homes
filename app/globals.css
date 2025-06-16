@@ -4,26 +4,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary:#51BB7B;
+  --primary:#793CFB;
+  --hoverBG: #683FF9
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-hoverBG: var(--hoverBG);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-poppins: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary:#51BB7B;
-  }
-}
-
+ 
 @layer base {
   html, * {
     font-family: var(--font-poppins), sans-serif;
@@ -34,5 +29,15 @@
   }
   a{
     color: var(--primary);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply bg-primary text-white px-4 py-2 rounded-sm hover:bg-hoverBG font-bold uppercase inline-block
+  }
+
+  .is-style-text-subtitle {
+    @apply text-xl md:text-2xl font-poppins text-primary
   }
 }

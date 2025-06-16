@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
       <body className={`${aboreto.variable} ${poppins.variable} antialiased`}>
         <Header />
         {children}
-        <NextTopLoader color="#51BB7B" />
+        <NextTopLoader color="#E83F8B" />
       </body>
     </html>
   );
