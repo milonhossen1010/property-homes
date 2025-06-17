@@ -8,6 +8,7 @@ import Column from '../Blocks/column/Column';
 
 import Image from 'next/image';
 import { getMarginStyle } from '@/utils/textStyle';
+import PropertySearch from '../Blocks/PropertySearch/PropertySearch';
 
 export default function BlockRenderer({ blocks }) {
   return blocks?.map((block, index) => {
@@ -120,8 +121,14 @@ export default function BlockRenderer({ blocks }) {
               }}
             />
           );
+        
+        //Property Search
+        case "acf/property-search": 
+         
+          return <PropertySearch key={index} />
 
         default:
+          console.log({ "Unknow": block })
           return null;
       }
     } catch (error) {
