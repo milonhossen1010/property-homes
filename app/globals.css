@@ -34,7 +34,7 @@
 
 @layer components {
   .btn {
-    @apply bg-primary text-white px-4 py-2 rounded-sm hover:bg-hoverBG font-bold uppercase inline-block
+    @apply bg-primary text-white px-4 py-2 rounded-sm hover:bg-hoverBG font-bold uppercase inline-block cursor-pointer
   }
 
   .is-style-text-subtitle {

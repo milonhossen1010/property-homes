@@ -1,16 +1,22 @@
-import { useEffect, useState } from "react";
-import Properties from "./Properties";
+import { useEffect, useState } from 'react';
+import Properties from './Properties';
 
 export default function PropertySearch() {
   const [properties, setProperties] = useState([]);
-  useEffect(() => {
-    const search = async () => {
-      const response = await fetch(`/api/search`);
-      const data = await response.json()
-      setProperties(data.properties);
-    }
 
+  const search = async () => {
+    const response = await fetch(`/api/search`);
+    const data = await response.json();
+    setProperties(data.properties);
+  };
+  
+  useEffect(() => {
     search();
-  }, [])
-  return <Properties properties={properties} />;
+  }, [0]);
+
+  return (
+    <div>
+      <Properties properties={properties} />   
+    </div>
+  );
 }

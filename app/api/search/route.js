@@ -2,10 +2,16 @@ import client from "@/client";
 import { gql } from "@apollo/client";
 
 export async function GET(req, res) {
+ 
   const { data } = await client.query({
     query: gql`
       query allProperties {
         properties {
+          pageInfo {
+            offsetPagination {
+              total
+            }
+          }
           nodes {
             title
             databaseId
@@ -29,5 +35,8 @@ export async function GET(req, res) {
       }
     `,
   });
-  return Response.json({ properties: data.properties.nodes });
+  return Response.json({
+    properties: data.properties.nodes,
+    total: data.properties?.pageInfo.offsetPagination.total
+  });
 }

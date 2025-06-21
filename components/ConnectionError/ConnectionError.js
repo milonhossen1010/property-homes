@@ -7,7 +7,7 @@ export default function ConnectionError({ message }) {
     <div className="w-full fixed top-0 left-0 h-screen p-6 bg-red-100 text-red-800 rounded-lg text-center flex flex-col items-center justify-center">
       <FiAlertCircle className="text-3xl mb-2" />
       <p className="mb-4 text-lg">
-        {message || 'Failed to load data. Please check your connection.'}
+        {message || 'Failed to load data. Please check your backend connection.'}
       </p>
       
         <button

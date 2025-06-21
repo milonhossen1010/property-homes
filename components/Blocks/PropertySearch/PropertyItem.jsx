@@ -46,13 +46,13 @@ export default function PropertyItem({
 
         {(!!petFriendly || !!hasParking) && (
           <div className="flex justify-between  mt-3 ">
-            {hasParking && (
+            {!!hasParking && (
               <p className='flex gap-2 items-center'>
                 <IoCarOutline />
                 <span>parking available</span>
               </p>
             )}
-            {petFriendly && (
+            {!!petFriendly && (
               <p className='flex gap-2 items-center'>            
                 <FaCat />
                 <span>pet friendly</span>
