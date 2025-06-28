@@ -69,6 +69,7 @@ export default function Filters({ onSearch }) {
           type="number"
           value={maxPrice}
           onChange={e => setMaxPrice(e.target.value)}
+          className="w-2xl"
         />
       </div>
       <div> 
