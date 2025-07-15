@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [process.env.WP_IMAGES_URL],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: process.env.WP_IMAGES_URL,
+      },
+    ],
   },
 };
 
