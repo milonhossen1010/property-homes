@@ -16,7 +16,6 @@ export default function BlockRenderer({ blocks }) {
       switch (block.name) {
         case 'core/post-title':
         case 'core/heading':
-        
           return (
             <Heading
               key={index}
@@ -104,7 +103,7 @@ export default function BlockRenderer({ blocks }) {
         case 'core/image':
           const margin = block?.attributes?.style?.spacing?.margin;
           const marginStyle = getMarginStyle(margin, spacing);
-       
+
           return (
             <Image
               key={index}
@@ -117,18 +116,23 @@ export default function BlockRenderer({ blocks }) {
                 height: block?.attributes?.displayHeight,
                 objectFit: block?.attributes?.scale,
                 ...marginStyle,
-                borderRadius: block?.attributes?.style?.border?.radius
+                borderRadius: block?.attributes?.style?.border?.radius,
               }}
             />
           );
-        
+
         //Property Search
-        case "acf/property-search": 
-         
-          return <PropertySearch key={index} />
+        case 'acf/property-search':
+          return <PropertySearch key={index} />;
+
+        
+        //Formspree
+        case 'acf/formspree-form': 
+          return <p key={index}>This is forms</p>
+
 
         default:
-          console.log({ "Unknow": block })
+          console.log({ Unknow: block });
           return null;
       }
     } catch (error) {
