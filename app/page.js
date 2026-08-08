@@ -31,6 +31,7 @@ export default function Home() {
 
         setBlocks(data.nodeByUri.blocks);
       } catch (error) {
+        console.error('GraphQL homepage query error:', error);
         setIsErorr(true);
       } finally {
         setIsLoading(false);

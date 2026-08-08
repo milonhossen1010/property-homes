@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Logo({logo}) {
+export default function Logo({ logo }) {
+ 
   return (
     <Link href="/" className="text-3xl text-white   uppercase ">
       {logo && (

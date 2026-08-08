@@ -12,34 +12,37 @@ import Button from '../Button/Buton';
 import ErrorMessage from '../ConnectionError/ConnectionError';
 import ConnectionError from '../ConnectionError/ConnectionError';
 
-const QUERY = gql`
-  query headerQuery {
+const QUERY = gql`query headerQuery {
     acfOptionsMainMenu {
-      header {
-        callToActionLabel
-        callToActionLink {
-          ... on Page {
-            uri
+      mainMenu {
+        siteLogo {
+          logo {
+            altText
+            sourceUrl
           }
         }
-        logo {
-          altText
-          sourceUrl
+        callToActionButton {
+          label
+          destination {
+            ... on Page {
+              uri
+            }
+          }
         }
         menuItems {
-          menuItem {
+          menuItems {
             label
-            link {
+            destination {
               ... on Page {
                 uri
               }
             }
-            submenuItems {
-              label
-              link {
-                ... on Page {
-                  uri
-                }
+          }
+          submenuitems {
+            label
+            destination {
+              ... on Page {
+                uri
               }
             }
           }
@@ -73,13 +76,16 @@ export default function Header() {
         const { data } = await client.query({
           query: QUERY,
         });
-        setMenus(data.acfOptionsMainMenu?.header?.menuItems);
-        setLogo(data.acfOptionsMainMenu?.header?.logo);
-        setCallToAction({
-          label: data.acfOptionsMainMenu?.header?.callToActionLabel,
-          link: data.acfOptionsMainMenu?.header?.callToActionLink?.uri,
-        });
+        console.log(data);
+        setMenus(data.acfOptionsMainMenu?.mainMenu?.menuItems);
+        setLogo(data.acfOptionsMainMenu?.mainMenu?.siteLogo?.logo);
+        // setCallToAction({
+        //   label: data.acfOptionsMainMenu?.header?.callToActionLabel,
+        //   link: data.acfOptionsMainMenu?.mainMenu?.callToActionButton
+        //     ?.destination?.uri,
+        // });
       } catch (err) {
+        console.error('Header GraphQL query error:', err);
         setIsError(true);
       } finally {
         setIsLoading(false);

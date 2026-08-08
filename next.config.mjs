@@ -1,10 +1,16 @@
 /** @type {import('next').NextConfig} */
+const wpImagesUrl = process.env.WP_IMAGES_URL || 'property-homes.local';
+
 const nextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: process.env.WP_IMAGES_URL,
+        hostname: wpImagesUrl,
+      },
+      {
+        protocol: 'https',
+        hostname: wpImagesUrl,
       },
     ],
   },

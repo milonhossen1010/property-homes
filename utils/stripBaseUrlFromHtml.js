@@ -1,3 +1,6 @@
 export const stripBaseUrlFromHtml = (htmlString) => {
-  return htmlString.split(process.env.NEXT_PUBLIC_WP_URL).join('');
-}
+  if (!htmlString) return '';
+  const wpUrl = process.env.NEXT_PUBLIC_WP_URL;
+  if (!wpUrl) return htmlString;
+  return htmlString.split(wpUrl).join('');
+};
